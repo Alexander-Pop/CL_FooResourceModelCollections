@@ -1,0 +1,44 @@
+<?php
+/**
+ * @var $block \CL\FooResourceModelCollections\Block\Display
+ */
+
+$bazhanaFoo = $block->getAllFooResourceModelCollectionses();
+?>
+<?php if (count($bazhanaFoo) > 0): ?>
+    <table border="1">
+        <tr>
+            <th><?= __("ID") ?></th>
+            <th><?= __("Name") ?></th>
+            <th><?= __("Production Company") ?></th>
+            <th><?= __("Edit/Delete") ?></th>
+        </tr>
+        <?php foreach ($bazhanaFoo as $foo): ?>
+            <tr>
+                <td><?= $foo->getId() ?></td>
+                <td><?= $foo->getName() ?></td>
+                <td><?= $foo->getProductionCompany() ?></td>
+                <td>
+                    <a href="<?= $block->getEditPageUrl()?>">Edit </a>
+                    <a href="<?= $block->getDeleteUrl()?>">Delete</a>
+                </td><!-- todo Add the functionality of Edit and Delete Foo -->
+            </tr>
+        <?php endforeach; ?>
+    </table>
+<?php else: ?>
+    <h1 style="color: red"><?= __("Foo test ttitle") ?></h1>
+<?php endif; ?>
+<hr />
+<form method="post" action="<?= $block->getPostUrl() ?>">
+    <fieldset style="margin: 0 auto; width: 50%">
+        <div>
+            <label for="name"><?= __("Name") ?></label>
+                <input type="text" name="name"/>
+        </div>
+        <div>
+            <label for="production_company"><?= __("Production Company") ?></label>
+                <input type="text" name="production_company"/>
+        </div>
+        <input type="submit" value="<?= __("Add Foo") ?>" />
+    </fieldset>
+</form>
